@@ -1,9 +1,15 @@
 ---
+import './src/styles/index.css';
 // Component Imports
 import Counter from '../components/Counter';
 const someProps = {
 	count: 0,
 };
+let someData = {}
+fetch('/.netlify/functions/hello')
+    .then(res => res.json())
+    .then(data => someData = data.items);
+console.log(someData);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -30,6 +36,7 @@ const someProps = {
 		<main>
 			<Counter {...someProps} client:visible>
 				<h1>Hello, React!</h1>
+				<p>{someData}</p>
 			</Counter>
 		</main>
 	</body>
