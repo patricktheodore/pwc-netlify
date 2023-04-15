@@ -8,7 +8,7 @@ export default function Counter({ children, count: initialCount }) {
   const subtract = () => setCount((i) => i - 1);
 
   useEffect(() => {
-    fetch("./netlify/functions/contentful")
+    fetch("/.netlify/functions/contentful")
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);
