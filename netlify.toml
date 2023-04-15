@@ -7,3 +7,9 @@
 
 [build.environment]
   NODE_VERSION = "19.2.0"
+
+[[redirects]]
+  from = "/contentful"
+  to = "/.netlify/functions/contentful"
+  status = 200
+  force = true
