@@ -5,7 +5,7 @@ const client = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
-export async function handler(event, context) {
+exports.handler = async function (event, context) {
   const entries = await client.getEntries({ 
     content_type: "page",
     "fields.slug": "home",

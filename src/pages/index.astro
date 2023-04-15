@@ -5,7 +5,14 @@ const someProps = {
 	count: 0,
 };
 
-const response = await fetch('/.netlify/functions/hello')
+const response = await fetch('/.netlify/functions/hello-world')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 console.log(response);
 
 // Full Astro Component Syntax:
@@ -16,7 +23,6 @@ console.log(response);
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<style>
 			html,
@@ -33,7 +39,6 @@ console.log(response);
 		<main>
 			<Counter {...someProps} client:visible>
 				<h1>Hello, React!</h1>
-				<p>{someData}</p>
 			</Counter>
 		</main>
 	</body>
