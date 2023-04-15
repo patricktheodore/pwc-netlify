@@ -1,28 +1,24 @@
-import contentful from "contentful";
+  import { createClient } from 'contentful';
 
-export const contentfulClient = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NODE_ENV === "development"
-    ? process.env.CONTENTFUL_PREVIEW_TOKEN
-    : process.env.CONTENTFUL_DELIVERY_TOKEN,
-  host: process.env.NODE_ENV === "development" ? "preview.contentful.com" : "cdn.contentful.com",
-});
-
-
-export async function handler() {
+  export async function handler(event, context) {
     try {
-      const response = await contentfulClient.getEntries<BlogPost>(
-        {
-          content_type: "page",
-          "fields.slug": "home",
-          include: 3
-        }
-      );
-      console.log(response);
-      // const items = response.items.map((item: Entry<BlogPost>) => item.fields);
+      const client = createClient({
+        space: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NODE_ENV === "development"
+          ? process.env.CONTENTFUL_PREVIEW_TOKEN
+          : process.env.CONTENTFUL_DELIVERY_TOKEN,
+        host: process.env.NODE_ENV === "development" ? "preview.contentful.com" : "cdn.contentful.com",
+      });
+  
+      const response = await client.getEntries({
+            content_type: "page",
+            "fields.slug": "home",
+            include: 3
+        });
+  
       return {
         statusCode: 200,
-        body: JSON.stringify(response)
+        body: JSON.stringify(response.items)
       };
     } catch (error) {
       return {
