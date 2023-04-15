@@ -6,4 +6,4 @@
   directory = "functions" # Change this to your functions directory
 
 [build.environment]
-  NODE_VERSION = "14"
+  NODE_VERSION = "19.2.0"
