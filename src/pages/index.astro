@@ -4,19 +4,6 @@ import Counter from '../components/Counter';
 const someProps = {
 	count: 0,
 };
-
-const response = await fetch('/.netlify/functions/hello-world')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-  })
-  .catch(error => {
-    console.error(error)
-  })
-console.log(response);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
