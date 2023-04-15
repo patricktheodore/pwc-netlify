@@ -4,6 +4,12 @@ import Counter from '../components/Counter';
 const someProps = {
 	count: 0,
 };
+
+fetch('https://dazzling-kheer-9f4454.netlify.app/.netlify/functions/contentful')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error))
+
 ---
 
 <html lang="en">
