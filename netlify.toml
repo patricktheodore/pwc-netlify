@@ -3,7 +3,7 @@
   publish = "dist"
 
 [functions]
-  directory = "functions" # Change this to your functions directory
+  directory = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "19.2.0"
