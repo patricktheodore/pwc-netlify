@@ -18,11 +18,11 @@ const callsToAction = [
   { name: 'View gallery', href: '/Gallery', icon: PhotoIcon },
 ]
 
-function classNames(...classes: any) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = (props: {page: string}) => {
+export const Nav = (page) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -42,13 +42,13 @@ export const Nav = (props: {page: string}) => {
           <div>
             <a href="/" className="flex">
               <span className="sr-only">Purified Window Cleaning</span>
-              {/* {data &&
+              {data &&
                 <img
-                  className="h-8 w-auto sm:h-12"
-                  src={data[0].fields.logo.fields.file.url}
-                  alt="Purified Window Cleaning Logo"
+                  className="h-8 w-auto sm:h-12 transform hover:scale-110 transition duration-250"
+                  src={data.fields.pwcLogo.fields.file.url}
+                  alt={data.fields.pwcLogo.fields.title}
                 />
-              } */}
+              }
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
@@ -59,7 +59,7 @@ export const Nav = (props: {page: string}) => {
           </div>
           <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
             <Popover.Group as="nav" className="flex space-x-10">
-              <a href="/" className={classNames(props.page === 'home' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
+              <a href="/" className={classNames(page === 'home' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
                 Home
               </a>
               <Popover>
@@ -67,7 +67,7 @@ export const Nav = (props: {page: string}) => {
                   <>
                     <Popover.Button
                       className={classNames(
-                        open ? 'text-gray-900' : props.page === 'services' ? 'text-brand' : 'text-gray-900',
+                        open ? 'text-gray-900' : page === 'services' ? 'text-brand' : 'text-gray-900',
                         'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-brandHover'
                       )}
                     >
@@ -146,13 +146,13 @@ export const Nav = (props: {page: string}) => {
                   </>
                 )}
               </Popover>
-              <a href="About" className={classNames(props.page === 'about' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
+              <a href="About" className={classNames(page === 'about' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
                 About
               </a>
-              <a href="Gallery" className={classNames(props.page === 'gallery' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
+              <a href="Gallery" className={classNames(page === 'gallery' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
                 Gallery
               </a>
-              <a href="Contact" className={classNames(props.page === 'contact' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
+              <a href="Contact" className={classNames(page === 'contact' ? 'text-brand' : 'text-gray-900', 'text-base font-medium hover:text-brandHover')}>
                 Contact
               </a>
             </Popover.Group>
