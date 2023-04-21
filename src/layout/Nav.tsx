@@ -26,10 +26,12 @@ export const Nav = (props: {page: string}) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/.netlify/functions/contentful/nav")
+    fetch("/.netlify/functions/nav2")
       .then((response) => response.json())
       .then((json) => setData(json));
   }, [])
+
+  console.log(data);
 
 
   return (
@@ -40,11 +42,13 @@ export const Nav = (props: {page: string}) => {
           <div>
             <a href="/" className="flex">
               <span className="sr-only">Purified Window Cleaning</span>
-              <img
-                className="h-8 w-auto sm:h-12"
-                // src={LogoBasic}
-                alt="Purified Window Cleaning Logo"
-              />
+              {/* {data &&
+                <img
+                  className="h-8 w-auto sm:h-12"
+                  src={data[0].fields.logo.fields.file.url}
+                  alt="Purified Window Cleaning Logo"
+                />
+              } */}
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">

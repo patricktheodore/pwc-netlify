@@ -1,6 +1,6 @@
 import contentful from "contentful";
 
-export const contentfulClient = contentful.createClient({
+export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.NODE_ENV === "development"
     ? process.env.CONTENTFUL_PREVIEW_TOKEN
