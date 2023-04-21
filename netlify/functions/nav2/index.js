@@ -14,7 +14,7 @@ export async function handler(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(response.items)
+      body: JSON.stringify(response)
     };
   } catch (error) {
     return {
