@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [tailwind({
     config: {
       applyAstroPreset: false,
-      applyBaseStyles: false
+      applyBaseStyles: true
     }
   }), react()],
 });
