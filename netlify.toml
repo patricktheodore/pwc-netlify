@@ -7,27 +7,3 @@
 
 [functions]
   directory = "netlify/functions"
-
-[[redirects]]
-  from = "/about"
-  to = "/About"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/Contact"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/gallery"
-  to = "/Gallery"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/services"
-  to = "/Services"
-  status = 301
-  force = true
