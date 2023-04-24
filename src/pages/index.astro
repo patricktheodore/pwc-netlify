@@ -1,14 +1,14 @@
 ---
 import Layout from '../layout/Layout.astro';
 
-// const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-// const response = await fetch(`${siteURL}/.netlify/functions/home`);
-// const data = await response.json();
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/home`);
+const data = await response.json();
 
-// console.log(data.fields.supportingContentSection[2].fields.cards[0]);
+console.log(data.fields.supportingContentSection[2].fields.cards[0]);
 ---
 
-<!-- <Layout page="Home"> 
+<Layout page="Home"> 
 	<main>
 		<div class="relative">
 		  <img
@@ -153,4 +153,4 @@ import Layout from '../layout/Layout.astro';
 			</div>
 		  </div>
 	</section>
-</Layout> -->
+</Layout>

@@ -5,9 +5,9 @@ import "@fontsource/hind-madurai";
 import "@fontsource/montserrat";
 const { page } = Astro.props;
 
-// const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-// const response = await fetch(`${siteURL}/.netlify/functions/footer`);
-// const data = await response.json();
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/footer`);
+const data = await response.json();
 ---
 
 <!DOCTYPE html>
@@ -19,9 +19,9 @@ const { page } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>PWC - {page}</title>
 	</head>
-	<!-- <body>
+	<body>
 		<header class="sticky top-0 z-50">
-			<Nav client:load page={page}/>
+			<Nav client:load page={page} />
 		</header>
 		<slot />
 		<footer class="bg-bgDark">
@@ -58,7 +58,7 @@ const { page } = Astro.props;
 			  </div>
 			</div>
 		  </footer>
-	</body> -->
+	</body>
 </html>
 
 <style is:global>

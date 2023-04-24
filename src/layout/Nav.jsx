@@ -16,9 +16,11 @@ function classNames(...classes) {
 
 export const Nav = (page) => {
   const [data, setData] = useState(null);
+  const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+
 
   useEffect(() => {
-    fetch("/.netlify/functions/nav")
+    fetch(`/.netlify/functions/nav`)
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);
