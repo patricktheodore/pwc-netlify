@@ -1,0 +1,8 @@
+---
+export interface SvgIconProps {
+  svg: string;
+  classNames?: string;
+}
+---
+
+<div innerHTML={Astro.props.svg} class={Astro.props.classNames || ''}></div>

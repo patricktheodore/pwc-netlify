@@ -1,16 +1,156 @@
 ---
-// Component Imports
-import Counter from '../components/Counter';
 import Layout from '../layout/Layout.astro';
-const someProps = {
-	count: 0,
-};
----
-<Layout page="home">
-	<Counter {...someProps} client:visible>
-		<h1>Hello, React!</h1>
-	</Counter>
-</Layout>
 
-<style>
-</style>
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/home`);
+const data = await response.json();
+
+console.log(data.fields.supportingContentSection[2].fields.cards[0]);
+---
+
+<Layout page="Home"> 
+	<main>
+		<div class="relative">
+		  <img
+			class="w-full max-h-screen object-cover brightness-25"
+			src={data.fields.heroImageSection.fields.heroImage.fields.file.url}
+			alt=""
+		  />
+		<div class="absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center mx-auto w-full h-full max-w-7xl text-center">
+		  <div class="px-6 sm:px-8">
+			<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+			  <span class="block text-center text-white">{data.fields.heroImageSection.fields.imageTitle}</span>
+			  <span class="block text-brand text-center">{data.fields.heroImageSection.fields.sectionHeadingColoredText}</span>
+			</h1>
+			<p class="mx-auto mt-3 max-w-md text-lg text-gray-50 sm:text-xl md:mt-5 md:max-w-3xl">
+			  {data.fields.heroImageSection.fields.sectionSubheading}
+			</p>
+			<div class="mt-10 sm:flex sm:justify-center">
+			  <div class="rounded-md shadow">
+				<a
+				  href=""
+				  class="flex w-full items-center justify-center rounded-md border border-transparent bg-brand px-8 py-3 text-base font-medium text-white hover:bg-brandDark md:py-4 md:px-10 md:text-lg"
+				>
+				  {data.fields.heroImageSection.fields.mainCallToAction}
+				</a>
+			  </div>
+			  <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+				<a
+				  href="#home-services"
+				  class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-brand hover:bg-gray-100 md:py-4 md:px-10 md:text-lg"
+				>
+				  {data.fields.heroImageSection.fields.secondaryCallToAction}
+				</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div id="home-services" class="bg-white py-24 sm:py-32">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		  <div class="mx-auto max-w-2xl sm:text-center">
+			<h2 class="text-lg font-semibold leading-8 tracking-tight text-brand">{data.fields.primaryContentSection.fields.primaryTextContent.content[0].content[0].value}</h2>
+			<p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{data.fields.primaryContentSection.fields.secondaryTextContent.content[0].content[0].value}</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600">{data.fields.primaryContentSection.fields.tertiaryTextContent.content[0].content[0].value}</p>
+		  </div>
+		</div>
+		<div class="relative overflow-hidden pt-16">
+		  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<img src={data.fields.primaryContentSection.fields.primaryImageContent.fields.file.url} alt="Coogee business in perth with very clean windows" class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" width="2432" height="1442">
+			<div class="relative" aria-hidden="true">
+			  <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
+			</div>
+		  </div>
+		</div>
+		<div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+		  <dl class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+			{data.fields.secondaryContentSection.fields.services.map((service) => 
+				<div class="relative pl-9">
+					<dt class="inline font-semibold text-brand">
+						<img
+							class="absolute top-1 left-1 h-5 w-5 text-brand" 
+							src={service.fields.serviceIcon.fields.file.url} 
+						/>
+							{service.fields.serviceTitle}.
+					</dt>
+					<dd class="inline text-gray-900">{service.fields.serviceDescription}</dd>
+				</div>
+			)}
+		  </dl>
+		</div>
+		<div class="w-full justify-center items-start text-center py-8">
+		  <a href="/Services" class="mt-2 text-md font-medium text-brand hover:text-brandDark lg:mt-4">
+			Learn more
+			<span aria-hidden="true"> &rarr;</span>
+		  </a>
+		</div>
+	  </div>
+	</main>
+	<section>
+		<div class="bg-bgDark py-24 sm:py-32">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			  <div class="mx-auto max-w-2xl lg:text-center">
+				<h2 class="text-lg font-semibold leading-8 tracking-tight text-brandDark">{data.fields.tertiaryContentSection.fields.title}</h2>
+				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl">{data.fields.tertiaryContentSection.fields.primaryTextContent.content[0].content[0].value}</p>
+				<p class="mt-6 text-lg leading-8 text-gray-400">{data.fields.tertiaryContentSection.fields.secondaryTextContent.content[0].content[0].value}</p>
+			  </div>
+			  
+			  <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+				<dl class="grid max-w-xl grid-cols- gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+				  {data.fields.supportingContentSection[0].fields.cards.map((card) => (
+					<div class="flex flex-col">
+					  <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-200">
+						<img
+						  class="h-8 w-8" 
+						  src={card.fields.icon.fields.file.url} 
+						/>
+						{card.fields.title}
+					  </dt>
+					  <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-400">
+						<p class="flex-auto">{card.fields.description.content[0].content[0].value}</p>
+					  </dd>
+					</div>
+					))
+				  }
+				</dl>
+			  </div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="bg-white py-16">
+			<div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
+			  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+				<div class="mx-auto max-w-2xl sm:text-center">
+				  <h2 class="text-lg font-semibold leading-8 tracking-tight text-brand">
+					{data.fields.supportingContentSection[1].fields.primaryTextContent.content[0].content[0].value}
+				  </h2>
+				  <p
+					class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+				  >
+				  {data.fields.supportingContentSection[1].fields.secondaryTextContent.content[0].content[0].value}
+				</p>
+				  <p class="mt-6 text-lg leading-8 text-gray-600">
+					{data.fields.supportingContentSection[1].fields.tertiaryTextContent.content[0].content[0].value}
+				</p>
+				</div>
+			  </div>
+			  <div class="my-12 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8">
+				{
+				  data.fields.supportingContentSection[2].fields.cards.map((company) => (
+					<div class="col-span-1 flex justify-center bg-gray-50 py-8 px-8 hover:bg-gray-100 hover:cursor-pointer">
+					  <a href={company.fields.link} target="_blank">
+						<img
+						  class="max-h-12"
+						  src={company.fields.logo.fields.file.url}
+						  alt={`${company.fields.company} Logo`}
+						/>
+					  </a>
+					</div>
+				  ))
+				}
+			  </div>
+			</div>
+		  </div>
+	</section>
+</Layout>

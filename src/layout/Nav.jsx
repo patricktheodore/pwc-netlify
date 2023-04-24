@@ -8,7 +8,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@heroicons/react/20/solid/index.js";
-import { SvgIcon } from "../components/SvgIcon";
+import { SvgIcon } from "../utils/SvgIcon";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -22,10 +22,6 @@ export const Nav = (page) => {
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);
-
-  console.log(
-    data ? data.fields.navigationLinks[1].fields.callsToAction[0].fields.callToAction : "loading"
-  );
 
   return (
     <>

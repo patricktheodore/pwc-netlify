@@ -1,6 +1,6 @@
 import { createClient } from 'contentful';
 
-export async function handler(event, context, entryID) {
+export async function handler(event, context) {
   try {
     const client = createClient({
       space: process.env.CONTENTFUL_SPACE_ID,
@@ -10,7 +10,7 @@ export async function handler(event, context, entryID) {
       host: process.env.NODE_ENV === "development" ? "preview.contentful.com" : "cdn.contentful.com",
     });
 
-    const response = await client.getEntry(entryID, { include: 10 });
+    const response = await client.getEntry('RbvyGkVJjOGHnq56WGxy1', { include: 10 });
 
     return {
       statusCode: 200,

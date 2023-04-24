@@ -1,9 +1,13 @@
 ---
 import { Nav } from './Nav'
-// import Footer from './Footer.astro'
+import SvgIcon from '../utils/SvgIcon.astro';
 import "@fontsource/hind-madurai";
 import "@fontsource/montserrat";
 const { page } = Astro.props;
+
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/footer`);
+const data = await response.json();
 ---
 
 <!DOCTYPE html>
@@ -13,14 +17,47 @@ const { page } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{page}</title>
+		<title>PWC - {page}</title>
 	</head>
 	<body>
 		<header class="sticky top-0 z-50">
 			<Nav client:load page={page}/>
 		</header>
-			<slot />
-		<!-- <Footer /> -->
+		<slot />
+		<footer class="bg-bgDark">
+			<div class="mx-auto max-w-7xl overflow-hidden py-12 px-6 lg:px-8">
+			  <div class="w-full flex flex-col justify-start items-center mb-10">
+				<a href="/" class="flex">
+				  <span class="sr-only">Purified Window Cleaning</span>
+				  <img
+				  	class="h-16 w-auto sm:h-12 transform hover:scale-110 transition duration-250"
+				  	src={data.fields.logo.fields.file.url}
+				  	alt={data.fields.logo.fields.title}
+				  />
+				</a>
+			  </div>
+			  <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+				{data && data.fields.footerLinks.map((item) => 
+					<div class="px-5 py-2">
+						<a href={item.fields.linksTo} class="text-base text-gray-100 hover:text-brand">{item.fields.title}</a>
+					</div>
+				)}
+			  </nav>
+			  <div class="mt-8 flex justify-center space-x-10">
+				{data && data.fields.socialMediaLinks.map((item) => 
+					<a href={item.fields.linksTo} target="_blank" class="text-gray-100 hover:text-brand">
+						<span class="sr-only">{item.fields.title}</span>
+						<Fragment set:html={item.fields.icon.content[0].content[0].value} />
+					</a>
+				)}
+			  </div>
+			  <div class="mt-8 flex flex-col justify-center space-y-3">
+				{data && data.fields.contactInfo.map((item) => 
+					<p class="text-center text-sm text-gray-300">{item.fields.content}</p>
+				  )}
+			  </div>
+			</div>
+		  </footer>
 	</body>
 </html>
 
