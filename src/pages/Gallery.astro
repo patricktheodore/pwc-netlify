@@ -7,7 +7,7 @@ const response = await fetch(`${siteURL}/.netlify/functions/gallery`);
 const data = await response.json();
 ---
 
-<Layout page="gallery">
+<Layout page="Gallery">
     <MasonryGallery client:load gallery={data.fields.imageGallery}/>
 </Layout>
 
