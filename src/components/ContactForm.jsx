@@ -5,9 +5,6 @@ import { SvgIcon } from "../utils/SvgIcon";
 
 export default function ContactForm({contactInfo, socialLinks}) {
 
-  console.log('Contact Info:', contactInfo);
-  console.log('Social Links:', socialLinks);
-
   return (
       <main className="bg-warm-gray-50 overflow-hidden">
         {/* Contact section */}
