@@ -8,6 +8,8 @@ const { page } = Astro.props;
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const responseFooter = await fetch(`${siteURL}/.netlify/functions/footer`);
 const data = await responseFooter.json();
+const responseNav = await fetch(`${siteURL}/.netlify/functions/nav`);
+const navData = await responseNav.json();
 ---
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ const data = await responseFooter.json();
 	</head>
 	<body>
 		<header class="sticky top-0 z-50">
-			<Nav client:load page={page}/>
+			<Nav client:load page={page} data={navData}/>
 		</header>
 		<slot />
 		<footer class="bg-bgDark">

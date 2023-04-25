@@ -14,15 +14,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export const Nav = (page) => {
-  const [data, setData] = useState(null);
-  const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+export const Nav = ({page, data}) => {
+  // const [data, setData] = useState(null);
+  // const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 
-  useEffect(() => {
-    fetch(`/.netlify/functions/nav`)
-      .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`/.netlify/functions/nav`)
+  //     .then((response) => response.json())
+  //     .then((json) => setData(json));
+  // }, []);
 
   return (
     <>
