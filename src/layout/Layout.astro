@@ -6,8 +6,8 @@ import "@fontsource/montserrat";
 const { page } = Astro.props;
 
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-const response = await fetch(`${siteURL}/.netlify/functions/footer`);
-const data = await response.json();
+const responseFooter = await fetch(`${siteURL}/.netlify/functions/footer`);
+const data = await responseFooter.json();
 ---
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ const data = await response.json();
 	</head>
 	<body>
 		<header class="sticky top-0 z-50">
-			<Nav client:load page={page} />
+			<Nav client:load page={page}/>
 		</header>
 		<slot />
 		<footer class="bg-bgDark">
