@@ -1,15 +1,18 @@
 ---
 import { Nav } from './Nav'
+import Loading from '../components/Loading.astro';
 import SvgIcon from '../utils/SvgIcon.astro';
 import "@fontsource/hind-madurai";
 import "@fontsource/montserrat";
 const { page } = Astro.props;
 
+let isLoading = true;
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const responseFooter = await fetch(`${siteURL}/.netlify/functions/footer`);
 const data = await responseFooter.json();
 const responseNav = await fetch(`${siteURL}/.netlify/functions/nav`);
 const navData = await responseNav.json();
+isLoading = false;
 ---
 
 <!DOCTYPE html>
@@ -22,6 +25,10 @@ const navData = await responseNav.json();
 		<title>PWC - {page}</title>
 	</head>
 	<body>
+
+		{isLoading ? <Loading /> : (
+
+
 		<header class="sticky top-0 z-50">
 			<Nav client:load page={page} data={navData}/>
 		</header>
@@ -60,6 +67,7 @@ const navData = await responseNav.json();
 			  </div>
 			</div>
 		  </footer>
+		  )}
 	</body>
 </html>
 
