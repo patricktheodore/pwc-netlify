@@ -7,3 +7,41 @@
 
 [functions]
   directory = "netlify/functions"
+
+[[redirects]]
+  from = "/contact"
+  to = "/Contact"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/About"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/Services"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/gallery"
+  to = "/Gallery"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/Home"
+  to = "/"
+  status = 200
+  force = true
+
+
