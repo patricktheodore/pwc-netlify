@@ -1,6 +1,4 @@
-import { Fragment, useEffect } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { Bars3Icon, EnvelopeIcon, PhoneIcon, XMarkIcon } from '@heroicons/react/24/outline/index.js'
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline/index.js'
 import { SvgIcon } from "../utils/SvgIcon";
 
 export default function ContactForm({contactInfo, socialLinks}) {

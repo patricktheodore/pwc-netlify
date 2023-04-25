@@ -3,7 +3,7 @@ import Layout from '../layout/Layout.astro';
 // import ServiceContainer from '../components/Services';
 
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-const response = await fetch(`${siteURL}/.netlify/functions/services`);
+const response = await fetch(`${siteURL}/.netlify/functions/service-page`);
 const data = await response.json();
 console.log(data);
 ---
