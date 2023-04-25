@@ -1,15 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { contentfulClient } from "../lib/contentful";
-import ServiceContainer from '../components/Services';
+import Layout from '../layout/Layout.astro';
+// import ServiceContainer from '../components/Services';
 
-// const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-// const response = await fetch(`${siteURL}/.netlify/functions/services`);
-// const data = await response.json();
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/services`);
+const data = await response.json();
+console.log(data);
 ---
 
 <Layout page="Services">
-  <div class="bg-white">
+  <!-- <div class="bg-white">
     <div class="relative">
       <img src={entries.items[0].fields.content[0].fields.heroImage.fields.file.url} class="object-cover" />
       <div class="absolute inset-0 bg-gradient-to-t from-white"></div>
@@ -23,8 +23,7 @@ import ServiceContainer from '../components/Services';
       <ServiceContainer client:load serviceData={serivceData} callToAction={callToActionData}/>
     </div>
 
-  </div>
-  
+  </div> -->
 </Layout>
 
 <style>
