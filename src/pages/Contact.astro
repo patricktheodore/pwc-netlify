@@ -2,7 +2,7 @@
 import Layout from '../layout/Layout.astro';
 
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-const response = await fetch(`${siteURL}/.netlify/functions/about`);
+const response = await fetch(`${siteURL}/.netlify/functions/contact`);
 const data = await response.json();
 ---
 
