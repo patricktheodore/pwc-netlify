@@ -1,14 +1,15 @@
 ---
 import Layout from '../layout/Layout.astro';
-import MasonryGallery from '../components/MasonryGallery';
+import MasonryGalleryWrapper from '../components/MasonryGalleryWrapper.astro';
 
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/gallery`);
 const data = await response.json();
+console.log(data);
 ---
 
 <Layout page="Gallery">
-    <MasonryGallery client:load gallery={data.fields.imageGallery}/>
+    <MasonryGalleryWrapper gallery={data.fields.imageGallery}/>
 </Layout>
 
 <style>
