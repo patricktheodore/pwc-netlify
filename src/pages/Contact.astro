@@ -1,9 +1,13 @@
 ---
 import Layout from '../layout/Layout.astro';
+import ContactForm from '../components/ContactForm';
 
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/contact`);
 const data = await response.json();
+console.log(
+    data.fields.socialMediaLinks.fields.linkGroup
+);
 ---
 
 <Layout page="contact">
@@ -13,15 +17,15 @@ const data = await response.json();
               <div class="pt-24 pb-12 lg:pt-32 lg:pb-16">
                 <div class="relative z-10 mx-auto max-w-7xl pl-4 pr-8 sm:px-6 lg:px-8">
                   <h1 class="text-4xl font-bold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl">
-                    <!-- {contactProps.title} -->Title
+                    {data.fields.primaryTextContent}
                   </h1>
                   <p class="mt-6 max-w-3xl text-xl text-warm-gray-500">
-                    <!-- {contactProps.subheading} -->Subheading
+                    {data.fields.secondaryTextContent.content[0].content[0].value}
                   </p>
                 </div>
               </div>
             </div>
-        <!-- <ContactForm client:load contactInfo={contactInfo} socialLinks={socialLinks}/> -->
+        <ContactForm client:load contactInfo={data.fields.contactInformation} socialLinks={data.fields.socialMediaLinks}/>
       </div>
     </div>
   </Layout>
