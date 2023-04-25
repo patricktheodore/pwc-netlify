@@ -15,15 +15,6 @@ function classNames(...classes) {
 }
 
 export const Nav = ({page, data}) => {
-  // const [data, setData] = useState(null);
-  // const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
-
-  // useEffect(() => {
-  //   fetch(`/.netlify/functions/nav`)
-  //     .then((response) => response.json())
-  //     .then((json) => setData(json));
-  // }, []);
-
   return (
     <>
       {data && (
@@ -53,10 +44,10 @@ export const Nav = ({page, data}) => {
               <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
                 <Popover.Group as="nav" className="flex space-x-10">
                   {data &&
-                    data.fields.navigationLinks.map((link) =>
+                    data.fields.navigationLinks.map((link, i) =>
                       !link.fields.opensDropdownDesktop ? (
                         <a
-                          key={link.fields.linkTitle}
+                          key={i}
                           href={link.fields.linksTo}
                           className={classNames(
                             page === link.fields.linkTitle
@@ -72,7 +63,7 @@ export const Nav = ({page, data}) => {
                           {({ open }) => (
                             <>
                               <Popover.Button
-                                key={link.fields.linkTitle}
+                                key={i}
                                 className={classNames(
                                   open
                                     ? "text-gray-900"
@@ -110,9 +101,9 @@ export const Nav = ({page, data}) => {
                               >
                                 <Popover.Panel className="absolute inset-x-0 top-full z-10 hidden transform bg-white shadow-lg md:block">
                                   <div className="mx-auto grid max-w-7xl gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16">
-                                    {link.fields.dropDownContent.map((item) => (
+                                    {link.fields.dropDownContent.map((item, i) => (
                                       <a
-                                        key={item.fields.serviceName}
+                                        key={i}
                                         href="/Services"
                                         className="-m-3 flex flex-col justify-between rounded-lg p-3 hover:bg-gray-50"
                                       >
@@ -151,9 +142,9 @@ export const Nav = ({page, data}) => {
                                   </div>
                                   <div className="bg-gray-50">
                                     <div className="mx-auto max-w-7xl space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8">
-                                      {link.fields.callsToAction.map((item) => (
+                                      {link.fields.callsToAction.map((item, i) => (
                                         <div
-                                          key={item.fields.callToAction}
+                                          key={i}
                                           className="flow-root"
                                         >
                                           <a
@@ -184,8 +175,8 @@ export const Nav = ({page, data}) => {
                     )}
                 </Popover.Group>
                 <div className="flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
-                  {data && data.fields.callsToAction.map((item) => 
-                    <a key={item.fields.callToAction} href={item.fields.linksTo} className={`inline-flex items-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium
+                  {data && data.fields.callsToAction.map((item, i) => 
+                    <a key={i} href={item.fields.linksTo} className={`inline-flex items-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium
                      ${item.fields.primary ? "bg-brand text-white shadow-sm hover:bg-brandDark" : "bg-brandLight text-brandDark hover:bg-brandLightHover"}`}>
                       {item.fields.callToAction}
                     </a>
@@ -228,9 +219,9 @@ export const Nav = ({page, data}) => {
                   <div className="mt-6 sm:mt-8">
                     <nav>
                       <div className="grid gap-7 sm:grid-cols-2 sm:gap-y-8 sm:gap-x-4">
-                        {data.fields.mobileServices.map((item) => (
+                        {data.fields.mobileServices.map((item, i) => (
                           <a
-                            key={item.fields.title}
+                            key={i}
                             href="/Services"
                             className="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
                           >
@@ -261,9 +252,9 @@ export const Nav = ({page, data}) => {
                 </div>
                 <div className="py-6 px-5">
                   <div className="grid grid-cols-2 gap-4">
-                    { data && data.fields.navigationLinks.map((link) => 
+                    { data && data.fields.navigationLinks.map((link, i) => 
                       <a
-                        key={link.fields.linkTitle}
+                        key={i}
                         href={link.fields.linksTo}  
                         className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
                       >
@@ -272,8 +263,8 @@ export const Nav = ({page, data}) => {
                     )}
                   </div>
                   <div className="mt-6 flex flex-col gap-y-2">
-                    {data && data.fields.callsToAction.map((item) => 
-                      <a key={item.fields.callToAction} href={item.fields.linksTo} className={`text-center rounded-md border border-transparent px-4 py-2 text-sm font-medium
+                    {data && data.fields.callsToAction.map((item, i) => 
+                      <a key={i} href={item.fields.linksTo} className={`text-center rounded-md border border-transparent px-4 py-2 text-sm font-medium
                       ${item.fields.primary ? "bg-brand text-white shadow-sm hover:bg-brandDark" : "bg-brandLight text-brandDark hover:bg-brandLightHover"}`}>
                         {item.fields.callToAction}
                       </a>

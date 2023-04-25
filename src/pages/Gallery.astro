@@ -5,12 +5,10 @@ import MasonryGallery from '../components/MasonryGallery';
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/gallery`);
 const data = await response.json();
-console.log(data.fields.content);
 ---
 
 <Layout page="gallery">
-    <!-- <MasonryGallery client:load gallery={data}/> -->
-    <p>Hello</p>
+    <MasonryGallery client:load gallery={data.fields.imageGallery}/>
 </Layout>
 
 <style>
