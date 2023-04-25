@@ -8,10 +8,6 @@ function classNames(...classes) {
 
 
 export default function ServiceGroup({services, callToAction}) {
-
-  console.log(services)  
-  console.log(callToAction)
-
   return (
     <div className="bg-white">
       <section
