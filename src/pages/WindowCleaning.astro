@@ -1,0 +1,28 @@
+---
+import Layout from '../layout/Layout.astro';
+
+const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const response = await fetch(`${siteURL}/.netlify/functions/service-page`);
+const data = await response.json();
+---
+
+<Layout page="WindowCleaning"> 
+  <div class="bg-white">
+    <div class="relative">
+      <!-- <img src={data.fields.primaryContentSection.fields.heroImage.fields.file.url} class="object-cover" /> -->
+      <div class="absolute inset-0 bg-gradient-to-t from-white"></div>
+    </div>
+    
+    <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+        <!-- <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{data.fields.primaryContentSection.fields.imageTitle}</h2> -->
+        <!-- <p class="mt-4 text-gray-500">{data.fields.primaryContentSection.fields.sectionHeadingColoredText}</p> -->
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+</style>
+

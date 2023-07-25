@@ -1,2 +1,2 @@
-sg purifiedWindows22
-nt purifieD23!
+sendgrid purifiedWindows22
+netlify/contentful purifieD23!
