@@ -27,7 +27,7 @@ export const Nav = ({page, data}) => {
             <div className="mx-auto flex max-w-7xl items-center justify-between py-5 px-6 sm:py-4 md:justify-start md:space-x-10 lg:px-8">
               <div>
                 <a href="/" className="flex">
-                  <span className="sr-only">Purified Window Cleaning</span>
+                  <span className="sr-only">Purified Group Pty. Ltd.</span>
                   <img
                     className="h-8 w-auto sm:h-12 transform hover:scale-110 transition duration-250"
                     src={data.fields.pwcLogo.fields.file.url}
