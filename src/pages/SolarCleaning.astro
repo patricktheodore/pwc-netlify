@@ -1,6 +1,5 @@
----
+<!-- ---
 import Layout from '../layout/Layout.astro';
-import ServiceGroup from '../components/ServiceGroup';
 
 const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/solar-cleaning`);
@@ -8,49 +7,10 @@ const response = await fetch(`${siteURL}/.netlify/functions/solar-cleaning`);
 const data = await response.json();
 ---
 
-<Layout page="Window Cleaning">
+<Layout page="Solar Cleaning">
 	<div class="relative">
-		<img
-			class="w-full max-h-screen lg:max-h-[50vh] min-h-[600px] object-cover brightness-25"
-			src={data.fields.content[0].fields.heroImage.fields.file.url}
-			alt="Background image of professional window cleaning taking place"
-			aria-label="Presentation"
-		/>
-		<div
-			class="absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center mx-auto w-full h-full max-w-7xl text-center">
-			<div class="px-6 sm:px-8 w-full flex flex-col justify-center items-center">
-				<h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-					{data.fields.content[0].fields.imageTitle}
-				</h1>
-
-				<h2
-					class="text-4xl font-bold tracking-tight text-brand text-center sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-					{data.fields.content[0].fields.sectionHeadingColoredText}
-				</h2>
-				<p class="mx-auto mt-3 max-w-md text-lg text-gray-50 sm:text-xl md:mt-5 md:max-w-3xl">
-					{data.fields.content[0].fields.sectionSubheading}
-				</p>
-				<div class="mt-10 sm:flex sm:justify-center">
-					<div class="rounded-md shadow">
-						<a
-							tabindex="0"
-							href="/Contact"
-							class="flex w-full items-center justify-center rounded-md border border-transparent bg-brand px-8 py-3 text-base font-medium text-white hover:bg-brandDark md:py-4 md:px-10 md:text-lg">
-							{data.fields.content[0].fields.mainCallToAction}
-						</a>
-					</div>
-					<div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-						<a
-							tabindex="0"
-							href="/Contact"
-							class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-brand hover:bg-gray-100 md:py-4 md:px-10 md:text-lg">
-							{data.fields.content[0].fields.secondaryCallToAction}
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
+		Hi
 	</div>
 </Layout>
 
-<style></style>
+<style></style> -->
