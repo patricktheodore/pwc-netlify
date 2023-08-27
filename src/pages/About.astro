@@ -1,61 +1,77 @@
 ---
 import Layout from '../layout/Layout.astro';
 
-const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
+const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/about`);
 const data = await response.json();
 ---
 
 <Layout page="About">
-    <div class="overflow-hidden bg-gray-50 py-16">
-        <div class="mx-auto max-w-7xl space-y-8 px-6 lg:px-8">
-        <div class="mx-auto max-w-prose text-base lg:max-w-none">
-            <h2 class="text-lg font-semibold text-brand">{data.fields.header.fields.primaryText}</h2>
-            <p class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">{data.fields.header.fields.secondaryText}</p>
-        </div>
-        <div class="relative z-10 mx-auto max-w-prose text-base lg:mx-0 lg:max-w-5xl lg:pr-72">
-            <p class="text-lg text-gray-500">{
-                data.fields.header.fields.tertiaryText ? 
-                    data.fields.header.fields.tertiaryText : 
-                    data.fields.header.fields.tertiaryTextLong.content[0].content[0].value 
-                }
-            </p>
-        </div>
-        <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
-            <div class="relative z-10">
-            <div class="prose prose-brand mx-auto text-gray-500 lg:max-w-none">
-                {data.fields.header.fields.additionalContent.map((item) => 
-                    <p>{item.fields.content}</p>
-                )}
-            </div>
-            <div class="mx-auto mt-10 flex max-w-prose text-base lg:max-w-none gap-x-8">
-                {data && data.fields.callsToAction.map((item) => 
-                    <a key={item.fields.callToAction} href={item.fields.linksTo} className={`flex w-full items-center justify-center rounded-md border border-transparent px-5 py-3 text-base font-medium
-                     ${item.fields.primary ? "bg-brand text-white shadow-sm hover:bg-brandDark" : "bg-brandLight text-brandDark hover:bg-brandLightHover"}`}>
-                      {item.fields.callToAction}
-                    </a>
-                  )}
-            </div>
-            </div> 
-            <div class="relative mx-auto mt-12 max-w-prose text-base lg:mt-0 lg:max-w-none">
-            <blockquote class="relative rounded-lg bg-white shadow-lg">
-                <div class="rounded-t-lg px-6 py-8 sm:px-10 sm:pt-10 sm:pb-8">
-                <div class="relative mt-8 text-lg font-medium text-gray-700">
-                    <p class="relative italic">{data.fields.pictureCard.fields.review}</p>
-                </div>
-                </div>
-                <cite class="relative flex items-center rounded-b-lg bg-brand py-5 px-6 not-italic sm:mt-10 sm:items-start sm:py-5 sm:pl-12 sm:pr-10">
-                <span class="relative flex-none rounded-full border-2 border-white sm:absolute sm:top-0 sm:-translate-y-1/2 sm:transform">
-                    <img class="h-12 w-12 rounded-full bg-orange-100 sm:h-20 sm:w-20" src={data.fields.pictureCard.fields.imageOrLogo.fields.file.url} alt={data.fields.pictureCard.fields.imageOrLogo.fields.description}>
-                </span>
-                <span class="relative ml-4 font-semibold leading-6 text-orange-100 sm:ml-24 sm:pl-1">
-                    <span class="font-semibold text-white sm:inline">{data.fields.pictureCard.fields.name}</span>
-                    <span class="sm:inline">{data.fields.pictureCard.fields.positionOrCompany}</span>
-                </span>
-                </cite>
-            </blockquote>
-            </div>
-        </div>
-        </div>
-    </div>
+	<div class="overflow-hidden bg-gray-50 py-16">
+		<div class="mx-auto max-w-7xl space-y-8 px-6 lg:px-8">
+			<div class="mx-auto max-w-prose text-base lg:max-w-none">
+				<h2 class="text-lg font-semibold text-brand">{data.fields.header.fields.primaryText}</h2>
+				<p class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+					{data.fields.header.fields.secondaryText}
+				</p>
+			</div>
+			<div class="relative z-10 mx-auto max-w-prose text-base lg:mx-0 lg:max-w-5xl lg:pr-72">
+				<p class="text-lg text-gray-500">
+					{
+						data.fields.header.fields.tertiaryText
+							? data.fields.header.fields.tertiaryText
+							: data.fields.header.fields.tertiaryTextLong.content[0].content[0].value
+					}
+				</p>
+			</div>
+			<div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
+				<div class="relative z-10">
+					<div class="prose prose-brand mx-auto text-gray-500 lg:max-w-none">
+						{data.fields.header.fields.additionalContent.map((item) => <p>{item.fields.content}</p>)}
+					</div>
+					<div class="mx-auto mt-10 flex max-w-prose text-base lg:max-w-none gap-x-8">
+						{
+							data &&
+								data.fields.callsToAction.map((item, i) => (
+									<a
+										href={item.fields.linksTo}
+										class={`flex w-full items-center justify-center rounded-md border border-transparent px-5 py-3 text-base font-medium
+                     ${
+												item.fields.primary
+													? 'bg-brand text-white shadow-sm hover:bg-brandDark'
+													: 'bg-brandLight text-brandDark hover:bg-brandLightHover'
+											}`}>
+										{item.fields.callToAction}
+									</a>
+								))
+						}
+					</div>
+				</div>
+				<div class="relative mx-auto mt-12 max-w-prose text-base lg:mt-0 lg:max-w-none">
+					<blockquote class="relative rounded-lg bg-white shadow-lg">
+						<div class="rounded-t-lg px-6 py-8 sm:px-10 sm:pt-10 sm:pb-8">
+							<div class="relative mt-8 text-lg font-medium text-gray-700">
+								<p class="relative italic">"{data.fields.pictureCard.fields.review}"</p>
+							</div>
+						</div>
+						<cite
+							class="relative flex items-center rounded-b-lg bg-brand py-5 px-6 not-italic sm:mt-10 sm:items-start sm:py-5 sm:pl-12 sm:pr-10">
+							<span
+								class="relative flex-none rounded-full border-2 border-white sm:absolute sm:top-0 sm:-translate-y-1/2 sm:transform">
+								<img
+									class="h-12 w-12 rounded-full bg-orange-100 sm:h-20 sm:w-20"
+									src={data.fields.pictureCard.fields.imageOrLogo.fields.file.url}
+									alt={data.fields.pictureCard.fields.imageOrLogo.fields.description}
+								/>
+							</span>
+							<span class="relative ml-4 font-semibold leading-6 text-orange-100 sm:ml-24 sm:pl-1">
+								<span class="font-semibold text-white sm:inline">{data.fields.pictureCard.fields.name}</span>
+								<span class="sm:inline">{data.fields.pictureCard.fields.positionOrCompany}</span>
+							</span>
+						</cite>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>

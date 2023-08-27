@@ -10,7 +10,7 @@ export async function handler(event, context) {
       host: process.env.NODE_ENV === "development" ? "preview.contentful.com" : "cdn.contentful.com",
     });
 
-    const response = await client.getEntry('4yWyzh70ozkiJigUVUD1Ux', { include: 10 });
+    const response = await client.getEntry('2aYIdTFaZt2LNXV3V1s3Eq', { include: 10 });
 
     return {
       statusCode: 200,
