@@ -113,7 +113,9 @@ const data = await response.json();
 										class="absolute top-1 left-1 h-5 w-5 text-brand"
 										src={service.fields.serviceIcon.fields.file.url}
 									/>
-									{service.fields.serviceTitle}.
+									<a class="inline hover:cursor-pointer hover:text-brandDark" href={service.fields.linksTo}>
+										{service.fields.serviceTitle}.
+									</a>
 								</dt>
 								<dd class="inline text-gray-900">{service.fields.serviceDescription}</dd>
 							</div>
@@ -121,9 +123,9 @@ const data = await response.json();
 					}
 				</dl>
 			</div>
-			<div class="w-full justify-center items-start text-center py-8">
+			<div class="w-full flex justify-center items-start text-center py-8 gap-x-[2rem]">
 				<a
-					href="/Services"
+					href="/WindowCleaning" 
 					class="mt-2 text-md font-medium text-brand hover:text-brandDark lg:mt-4">
 					Learn more
 					<span aria-hidden="true"> &rarr;</span>
