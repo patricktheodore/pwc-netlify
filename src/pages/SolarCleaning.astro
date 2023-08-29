@@ -71,7 +71,7 @@ console.log(data.fields.content[1]);
 						class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-8 lg:gap-y-16">
 						{
 							data.fields.content[2].fields.contentGroup.map((item) => (
-								<div class="relative pl-9">
+								<div class="relative">
 									<dt class="inline font-semibold text-brand text-xl">{item.fields.title}</dt>
 									<dd class="inline text-gray-900">{item.fields.primaryTextContent.content[0].content[0].value}</dd>
 								</div>
@@ -108,7 +108,7 @@ console.log(data.fields.content[1]);
 					<dl class="mx-auto grid max-w-3xl grid-rows-5 gap-x-6 gap-y-10 text-base leading-7 text-gray-200 lg:gap-x-8 lg:gap-y-16">
 						{
 							data.fields.content[4].fields.contentGroup.map((item) => (
-								<div class="flex flex-col justify-start items-center text-justify row-span-1">
+								<div class="flex flex-col justify-start items-center text-center row-span-1">
 									<p class="text-brand text-xl">{item.fields.title}</p>
 									<p>{item.fields.primaryTextContent.content[0].content[0].value}</p>
 								</div>

@@ -26,7 +26,7 @@ export default function ServiceGroup({services, callToAction}) {
                       className={({ selected }) =>
                         classNames(
                           selected
-                            ? "border-brand text-brand"
+                            ? "border-b-brand text-brand"
                             : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
                           "whitespace-nowrap border-b-2 py-6 text-sm font-medium px-2"
                         )

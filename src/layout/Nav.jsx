@@ -70,7 +70,7 @@ export const Nav = ({page, data}) => {
                                     : page === link.fields.linkTitle
                                     ? "text-brand"
                                     : "text-gray-900",
-                                  "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-brandHover"
+                                  "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-brandHover focus:outline-none focus:ring-0"
                                 )}
                               >
                                 <span>{link.fields.linkTitle}</span>
@@ -104,7 +104,7 @@ export const Nav = ({page, data}) => {
                                     {link.fields.dropDownContent.map((item, i) => (
                                       <a
                                         key={i}
-                                        href="/Services"
+                                        href={item.fields.linksTo}
                                         className="-m-3 flex flex-col justify-between rounded-lg p-3 hover:bg-gray-50"
                                       >
                                         <div className="flex md:h-full lg:flex-col">
@@ -222,7 +222,7 @@ export const Nav = ({page, data}) => {
                         {data.fields.mobileServices.map((item, i) => (
                           <a
                             key={i}
-                            href="/Services"
+                            href={item.fields.linksTo}
                             className="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
                           >
                             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-brand text-white sm:h-12 sm:w-12">
@@ -237,15 +237,6 @@ export const Nav = ({page, data}) => {
                             <div className="ml-4 text-base font-medium text-gray-900">{item.fields.title}</div>
                           </a>
                         ))}
-                      </div>
-                      <div className="mt-8 text-base">
-                        <a
-                          href="/services"
-                          className="font-medium text-brandHover hover:text-brand"
-                        >
-                          View all services
-                          <span aria-hidden="true"> &rarr;</span>
-                        </a>
                       </div>
                     </nav>
                   </div>
