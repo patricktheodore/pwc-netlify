@@ -6,14 +6,14 @@ const response = await fetch(`${siteURL}/.netlify/functions/solar-cleaning`);
 
 const data = await response.json();
 
-console.log(data)
+console.log(data.fields.content[1]);
 ---
 
 <Layout page="Solar Cleaning">
 	<div class="relative">
 		<img
 			class="w-full max-h-screen lg:max-h-[50vh] min-h-[600px] object-cover brightness-25"
-			src={data.fields.heroImage.fields.file.url}
+			src={data.fields.content[0].fields.heroImage.fields.file.url}
 			alt="Background image of professional window cleaning taking place"
 			aria-label="Presentation"
 		/>
@@ -21,15 +21,15 @@ console.log(data)
 			class="absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center mx-auto w-full h-full max-w-7xl text-center">
 			<div class="px-6 sm:px-8 w-full flex flex-col justify-center items-center">
 				<h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-					{data.fields.imageTitle}
+					{data.fields.content[0].fields.imageTitle}
 				</h1>
 
 				<h2
 					class="text-4xl font-bold tracking-tight text-brand text-center sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-					{data.fields.sectionHeadingColoredText}
+					{data.fields.content[0].fields.sectionHeadingColoredText}
 				</h2>
 				<p class="mx-auto mt-3 max-w-md text-lg text-gray-50 sm:text-xl md:mt-5 md:max-w-3xl">
-					{data.fields.sectionSubheading}
+					{data.fields.content[0].fields.sectionSubheading}
 				</p>
 				<div class="mt-10 sm:flex sm:justify-center">
 					<div class="rounded-md shadow">
@@ -37,7 +37,7 @@ console.log(data)
 							tabindex="0"
 							href="/Contact"
 							class="flex w-full items-center justify-center rounded-md border border-transparent bg-brand px-8 py-3 text-base font-medium text-white hover:bg-brandDark md:py-4 md:px-10 md:text-lg">
-							{data.fields.mainCallToAction}
+							{data.fields.content[0].fields.mainCallToAction}
 						</a>
 					</div>
 					<div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
@@ -45,13 +45,95 @@ console.log(data)
 							tabindex="0"
 							href="/Contact"
 							class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-brand hover:bg-gray-100 md:py-4 md:px-10 md:text-lg">
-							{data.fields.secondaryCallToAction}
+							{data.fields.content[0].fields.secondaryCallToAction}
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<main>
+		<div class="py-24 sm:py-32">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8">
+				<div class="mx-auto max-w-2xl sm:text-center">
+					<h3 class="text-lg font-semibold leading-8 tracking-wide text-brand">
+						{data.fields.content[1].fields.subheading}
+					</h3>
+					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+						{data.fields.content[1].fields.title}
+					</p>
+					<p class="mt-6 text-lg leading-8 text-gray-600">
+						{data.fields.content[1].fields.description}
+					</p>
+				</div>
+				<div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+					<dl
+						class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-8 lg:gap-y-16">
+						{
+							data.fields.content[2].fields.contentGroup.map((item) => (
+								<div class="relative pl-9">
+									<dt class="inline font-semibold text-brand text-xl">{item.fields.title}</dt>
+									<dd class="inline text-gray-900">{item.fields.primaryTextContent.content[0].content[0].value}</dd>
+								</div>
+							))
+						}
+					</dl>
+				</div>
+				<div class="w-full justify-center items-start text-center py-8">
+					<a
+						href="/Contact"
+						class="mt-2 text-md font-medium text-brand hover:text-brandDark lg:mt-4">
+						Get a quote
+						<span aria-hidden="true"> &rarr;</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+	<section>
+		<div class="bg-bgDark py-24 sm:py-32">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8">
+				<div class="mx-auto max-w-2xl sm:text-center">
+					<p class="text-lg font-semibold leading-8 tracking-wide text-brand">
+						{data.fields.content[3].fields.subheading}
+					</p>
+					<h4 class="mt-2 text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl">
+						{data.fields.content[3].fields.title}
+					</h4>
+					<p class="mt-6 text-lg leading-8 text-gray-300">
+						{data.fields.content[3].fields.description}
+					</p>
+				</div>
+				<div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+					<dl class="mx-auto grid max-w-3xl grid-rows-5 gap-x-6 gap-y-10 text-base leading-7 text-gray-200 lg:gap-x-8 lg:gap-y-16">
+						{
+							data.fields.content[4].fields.contentGroup.map((item) => (
+								<div class="flex flex-col justify-start items-center text-justify row-span-1">
+									<p class="text-brand text-xl">{item.fields.title}</p>
+									<p>{item.fields.primaryTextContent.content[0].content[0].value}</p>
+								</div>
+							))
+						}
+					</dl>
+				</div>
+				<div class="w-full justify-center items-start text-center py-8">
+					<a
+						href="/Contact"
+						class="mt-2 text-md font-medium text-brand hover:text-brandDark lg:mt-4">
+						Contact us
+						<span aria-hidden="true"> &rarr;</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="py-24 sm:py-32">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8">
+				<!-- <p>Hi</p> -->
+			</div>
+		</div>
+	</section>
 </Layout>
 
 <style></style>
