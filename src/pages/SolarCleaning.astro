@@ -1,12 +1,22 @@
 ---
 import Layout from '../layout/Layout.astro';
+import { ImageCarousel } from "../components/ImageCarousel";
 
 const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/solar-cleaning`);
 
 const data = await response.json();
 
-console.log(data.fields.content[6].fields.contentGroup[1].fields.primaryTextContent.content[0].content[0].value);
+// console.log(data.fields.content[7].fields.image[0].fields.image.fields.file.url);
+
+const images = data.fields.content[7].fields.image.map((image) => {
+	return {
+		url: image.fields.image.fields.file.url,
+		alt: image.altText
+	}
+});
+
+// console.log(images)
 ---
 
 <Layout page="Solar Cleaning">
@@ -89,6 +99,9 @@ console.log(data.fields.content[6].fields.contentGroup[1].fields.primaryTextCont
 				</div>
 			</div>
 		</div>
+		<div class="py-24">
+			<ImageCarousel client:load images={images}/>
+		</div>
 		<div class="py-16">
 			<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8">
 				<div class="mx-auto max-w-2xl sm:text-center">
@@ -160,13 +173,6 @@ console.log(data.fields.content[6].fields.contentGroup[1].fields.primaryTextCont
 						<span aria-hidden="true"> &rarr;</span>
 					</a>
 				</div>
-			</div>
-		</div>
-	</section>
-	<section>
-		<div class="py-24 sm:py-32">
-			<div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8">
-				<!-- horizontal image slider -->
 			</div>
 		</div>
 	</section>
