@@ -112,6 +112,7 @@ const data = await response.json();
 									<img
 										class="absolute top-1 left-1 h-5 w-5 text-brand"
 										src={service.fields.serviceIcon.fields.file.url}
+										alt=""
 									/>
 									<a class="inline hover:cursor-pointer hover:text-brandDark" href={service.fields.linksTo}>
 										{service.fields.serviceTitle}.
@@ -133,7 +134,7 @@ const data = await response.json();
 			</div>
 		</div>
 	</main>
-	<section>
+		<section>
 		<div class="bg-bgDark py-24 sm:py-32">
 			<div class="mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center">
@@ -157,6 +158,7 @@ const data = await response.json();
 										<img
 											class="h-8 w-8"
 											src={card.fields.icon.fields.file.url}
+											alt=""
 										/>
 										{card.fields.title}
 									</dt>
