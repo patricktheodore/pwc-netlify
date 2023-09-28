@@ -1,8 +1,27 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline/index.js'
 import { SvgIcon } from "../utils/SvgIcon";
 
-export default function ContactForm({contactInfo, socialLinks}) {
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  const target = event.target;
 
+  const data = {
+    firstName: target.firstName.value, 
+    lastName: target.lastName.value, 
+    email: target.email.value, 
+    phone: target.phone.value, 
+    subject: target.subject.value, 
+    message: target.message.value
+  };
+  
+
+  fetch("./.netlify/functions/new-enquiry", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+};
+
+export default function ContactForm({contactInfo, socialLinks}) {
   return (
       <main className="bg-warm-gray-50 overflow-hidden">
         {/* Contact section */}
@@ -156,30 +175,30 @@ export default function ContactForm({contactInfo, socialLinks}) {
                 {/* Contact form */}
                 <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
                   <h3 className="text-lg font-medium text-warm-gray-900">Send us a message</h3>
-                  <form action="#" method="POST" className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                  <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                     <div>
-                      <label htmlFor="first-name" className="block text-sm font-medium text-warm-gray-900">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-warm-gray-900">
                         First name
                       </label>
                       <div className="mt-1">
                         <input
                           type="text"
-                          name="first-name"
-                          id="first-name"
+                          name="firstName"
+                          id="firstName"
                           autoComplete="given-name"
                           className="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand"
                         />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="last-name" className="block text-sm font-medium text-warm-gray-900">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-warm-gray-900">
                         Last name
                       </label>
                       <div className="mt-1">
                         <input
                           type="text"
-                          name="last-name"
-                          id="last-name"
+                          name="lastName"
+                          id="lastName"
                           autoComplete="family-name"
                           className="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand"
                         />
