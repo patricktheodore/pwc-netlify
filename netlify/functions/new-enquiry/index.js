@@ -18,6 +18,7 @@ const handler = async function(event) {
     body: JSON.stringify({
       from: "info@purifiedwindowcleaning.com.au",
       to: requestBody.email,
+      cc: "info@purifiedwindowcleaning.com.au",
       subject: requestBody.subject,
       parameters: { 
         firstName: requestBody.firstName, 
@@ -32,7 +33,7 @@ const handler = async function(event) {
 
   return {
     statusCode: 200,
-    body: JSON.stringify("Subscribe email sent!"),
+    body: JSON.stringify("Enquriy sent"),
   };
 };
 
