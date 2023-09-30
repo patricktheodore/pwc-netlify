@@ -1,9 +1,10 @@
 ---
 import Layout from '../layout/Layout.astro';
-import Logo from '../assets/Original.svg';
 const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/home`);
 const data = await response.json();
+
+console.log(siteURL, response, data)
 ---
 
 <Layout page="Home">
