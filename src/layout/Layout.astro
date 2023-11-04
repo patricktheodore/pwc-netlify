@@ -3,7 +3,7 @@ import { Nav } from './Nav'
 import Loading from '../components/Loading.astro';
 import "@fontsource/hind-madurai";
 import "@fontsource/montserrat";
-const { page } = Astro.props;
+const { page, metaTag, url } = Astro.props;
 
 let isLoading = true;
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
@@ -12,6 +12,7 @@ const data = await responseFooter.json();
 const responseNav = await fetch(`${siteURL}/.netlify/functions/nav`);
 const navData = await responseNav.json();
 isLoading = false;
+
 ---
 
 <!DOCTYPE html>
@@ -20,8 +21,31 @@ isLoading = false;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Purified Group - {page}</title>
+		<meta name="description" content={metaTag} />
+		<title>{page}</title>
+		<meta property="og:title" content={page} />
+		<meta property="og:description" content={metaTag} />
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://www.purifiedgroup.com.au/images/Original.png" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content={page}>
+		<meta name="twitter:description" content={metaTag}>
+		<meta name="twitter:image" content="https://www.purifiedgroup.com.au/images/Original.png">
+		<script type="application/ld+json">
+			{
+			  "@context": "http://schema.org",
+			  "@type": "Organization",
+			  "name": "Purified Group",
+			  "url": "https://www.purifiedgroup.com.au/",
+			  "logo": "https://www.purifiedgroup.com.au/images/Original_Transparent.png",
+			  "sameAs": [
+				"https://www.facebook.com/Purifiedwindowcleaning",
+				"https://www.instagram.com/purifiedwindows/",
+			  ]
+			}
+		</script>
+		<meta name="robots" content="index, follow" />
 	</head>
 	<body>
 

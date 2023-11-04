@@ -47,7 +47,7 @@ export const Nav = ({page, data}) => {
                     data.fields.navigationLinks.map((link, i) =>
                       !link.fields.opensDropdownDesktop ? (
                         <a
-                          key={i}
+                          key={`${link.fields.linksTo}-${i}`}
                           href={link.fields.linksTo}
                           className={classNames(
                             page === link.fields.linkTitle
@@ -63,7 +63,7 @@ export const Nav = ({page, data}) => {
                           {({ open }) => (
                             <>
                               <Popover.Button
-                                key={i}
+                                key={`${link.fields.linkTitle}-${i}`}
                                 className={classNames(
                                   open
                                     ? "text-gray-900"
@@ -103,7 +103,7 @@ export const Nav = ({page, data}) => {
                                   <div className="mx-auto grid max-w-7xl gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16">
                                     {link.fields.dropDownContent.map((item, i) => (
                                       <a
-                                        key={i}
+                                        key={`${item.fields.linksTo}-${i}`}
                                         href={item.fields.linksTo}
                                         className="-m-3 flex flex-col justify-between rounded-lg p-3 hover:bg-gray-50"
                                       >
@@ -144,7 +144,7 @@ export const Nav = ({page, data}) => {
                                     <div className="mx-auto max-w-7xl space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8">
                                       {link.fields.callsToAction.map((item, i) => (
                                         <div
-                                          key={i}
+                                          key={`${item.fields.linksTo}-${i}`}
                                           className="flow-root"
                                         >
                                           <a
@@ -176,7 +176,7 @@ export const Nav = ({page, data}) => {
                 </Popover.Group>
                 <div className="flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
                   {data && data.fields.callsToAction.map((item, i) => 
-                    <a key={i} href={item.fields.linksTo} className={`inline-flex items-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium
+                    <a key={`${item.fields.linksTo}-${i}`} href={item.fields.linksTo} className={`inline-flex items-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium
                      ${item.fields.primary ? "bg-brand text-white shadow-sm hover:bg-brandDark" : "bg-brandLight text-brandDark hover:bg-brandLightHover"}`}>
                       {item.fields.callToAction}
                     </a>
@@ -221,7 +221,7 @@ export const Nav = ({page, data}) => {
                       <div className="grid gap-7 sm:grid-cols-2 sm:gap-y-8 sm:gap-x-4">
                         {data.fields.mobileServices.map((item, i) => (
                           <a
-                            key={i}
+                            key={`${item.fields.linksTo}-${i}`}
                             href={item.fields.linksTo}
                             className="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
                           >
@@ -245,7 +245,7 @@ export const Nav = ({page, data}) => {
                   <div className="grid grid-cols-2 gap-4">
                     { data && data.fields.navigationLinks.map((link, i) => 
                       <a
-                        key={i}
+                        key={`${link.fields.linksTo}-${i}`}
                         href={link.fields.linksTo}  
                         className="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
                       >
@@ -255,7 +255,7 @@ export const Nav = ({page, data}) => {
                   </div>
                   <div className="mt-6 flex flex-col gap-y-2">
                     {data && data.fields.callsToAction.map((item, i) => 
-                      <a key={i} href={item.fields.linksTo} className={`text-center rounded-md border border-transparent px-4 py-2 text-sm font-medium
+                      <a key={`${item.fields.linksTo}-${i}`} href={item.fields.linksTo} className={`text-center rounded-md border border-transparent px-4 py-2 text-sm font-medium
                       ${item.fields.primary ? "bg-brand text-white shadow-sm hover:bg-brandDark" : "bg-brandLight text-brandDark hover:bg-brandLightHover"}`}>
                         {item.fields.callToAction}
                       </a>

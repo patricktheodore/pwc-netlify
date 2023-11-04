@@ -5,9 +5,12 @@ import MasonryGalleryWrapper from '../components/MasonryGalleryWrapper.astro';
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/gallery`);
 const data = await response.json();
+const pageTitle = "Purified Group - Gallery | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Explore our Purified Group Gallery to see the exceptional results of our professional window cleaning and solar panel maintenance. Our before-and-after images showcase our commitment to brilliance and detail in Perth, Western Australia.";
+const url = "https://www.purifiedgroup.com.au/Gallery";
 ---
 
-<Layout page="Gallery">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
     <MasonryGalleryWrapper gallery={data.fields.imageGallery}/>
 </Layout>
 

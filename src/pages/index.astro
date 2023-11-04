@@ -3,9 +3,13 @@ import Layout from '../layout/Layout.astro';
 const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/home`);
 const data = await response.json();
+
+const pageTitle = "Purified Group - Home | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Discover industry leading Window Cleaning and Solar Panel Maintenance with Purified Group. Serving Perth, Western Australia, our eco-friendly and thorough cleaning services ensure spotless results. Read client testimonials and learn about our commitment to sparkling clean and energy-efficient homes and businesses!";
+const url = "https://www.purifiedgroup.com.au";
 ---
 
-<Layout page="Home">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
 	<main>
 		<div class="relative">
 			<img
@@ -78,11 +82,11 @@ const data = await response.json();
 							</a>
 						</div>
 						<div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-							<a
+							<p
 								onclick="window.open('tel:+61467234406');"
 								class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-brand hover:bg-gray-100 md:py-4 md:px-10 md:text-lg hover:cursor-pointer">
 								{data.fields.heroImageSection.fields.secondaryCallToAction}
-							</a>
+							</p>
 						</div>
 					</div>
 				</div>

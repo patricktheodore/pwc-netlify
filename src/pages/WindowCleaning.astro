@@ -8,9 +8,13 @@ const responseTwo = await fetch(`${siteURL}/.netlify/functions/service-page`);
 
 const data = await response.json();
 const serviceGroupData = await responseTwo.json();
+
+const pageTitle = "Purified Group - Solar Panel Cleaning & Maintenance | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Boost your solar panel's performance with Purified Group's expert cleaning and maintenance services. Our thorough cleaning process ensures optimal efficiency and power output for your solar investment. Eco-safe products and techniques protect your panels and the environment. Serving homes and businesses in Perth, Western Australia.";
+const url = "https://www.purifiedgroup.com.au/WindowCleaning";
 ---
 
-<Layout page="Window Cleaning">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
 	<div class="relative">
 		<img
 			class="w-full max-h-screen lg:max-h-[50vh] min-h-[600px] object-cover brightness-25"

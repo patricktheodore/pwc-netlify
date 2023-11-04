@@ -5,9 +5,14 @@ import ContactForm from '../components/ContactForm';
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/contact`);
 const data = await response.json();
+
+const pageTitle = "Purified Group - Contact Us | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Get in touch with Purified Group for expert Window Cleaning and Solar Panel Maintenance. Learn about our green methods, commitment to quality, and the passionate team led by our dedicated founder. Contact us for sparkling service in Perth, Western Australia";
+const url = "https://www.purifiedgroup.com.au/Contact";
+
 ---
 
-<Layout page="Contact">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
     <div class="bg-warm-gray-50">
       <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
           <div class="bg-warm-gray-50">

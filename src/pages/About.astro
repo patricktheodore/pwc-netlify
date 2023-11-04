@@ -4,9 +4,14 @@ import Layout from '../layout/Layout.astro';
 const siteURL = import.meta.env.PUBLIC_URL || 'http://localhost:8888';
 const response = await fetch(`${siteURL}/.netlify/functions/about`);
 const data = await response.json();
+
+const pageTitle = "Purified Group - About Us | Professional Window & Solar Panel Cleaning";
+const metaTag = "Learn about Purified Group's journey to becoming a leader in eco-friendly window cleaning and solar panel maintenance. Founded by Tom Allan, our passion for pristine views and sustainable living drives us to deliver excellence in every job. Discover our story and commitment to customer satisfaction.";
+const url = "https://www.purifiedgroup.com.au/About";
+
 ---
 
-<Layout page="About">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
 	<div class="overflow-hidden bg-gray-50 py-16">
 		<div class="mx-auto max-w-7xl space-y-8 px-6 lg:px-8">
 			<div class="mx-auto max-w-prose text-base lg:max-w-none">

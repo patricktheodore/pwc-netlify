@@ -5,9 +5,13 @@ import ServiceGroup from '../components/ServiceGroup';
 const siteURL = import.meta.env.PUBLIC_URL || "http://localhost:8888";
 const response = await fetch(`${siteURL}/.netlify/functions/service-page`);
 const data = await response.json();
+
+const pageTitle = "Purified Group - Services | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Uncover a full spectrum of window cleaning and home/business services at Purified Group. Our skilled team delivers streak-free clarity and optimized solar performance for your property. Experience premier cleaning solutions tailored to Perth's needs. From residential to commercial, we've got you covered. Services include Window Cleaning, Solar Panel Maintenance, Gutter cleaning, Pressure Cleaning, and more.";
+const url = "https://www.purifiedgroup.com.au/Services";
 ---
 
-<Layout page="Services"> 
+<Layout page={pageTitle} metaTag={metaTag} url={url}> 
   <div class="bg-white">
     <div class="relative">
       <img src={data.fields.primaryContentSection.fields.heroImage.fields.file.url} class="object-cover" />

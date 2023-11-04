@@ -16,10 +16,12 @@ const images = data.fields.content[7].fields.image.map((image) => {
 	}
 });
 
-// console.log(images)
+const pageTitle = "Purified Group - Window Cleaning Solutions | Reliable, Efficient, Sustainable Cleaning Services";
+const metaTag = "Experience unparalleled window clarity with Purified Group's professional window cleaning services. Our eco-friendly methods and detail-oriented approach guarantee a streak-free shine that transforms your view. Perfect for residential and commercial properties in Perth, Western Australia.";
+const url = "https://www.purifiedgroup.com.a/SolarCleaning";
 ---
 
-<Layout page="Solar Cleaning">
+<Layout page={pageTitle} metaTag={metaTag} url={url}>
 	<div class="relative">
 		<img
 			class="w-full max-h-screen lg:max-h-[50vh] min-h-[600px] object-cover brightness-25"
