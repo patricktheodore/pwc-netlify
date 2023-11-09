@@ -26,7 +26,8 @@ const handler = async function(event) {
         email: requestBody.email, 
         phone: requestBody.phone, 
         subject: requestBody.subject, 
-        message: requestBody.message
+        message: requestBody.message,
+        address: requestBody.address,
       },
     }),
   });

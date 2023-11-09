@@ -1,127 +1,147 @@
-import React, { useState } from "react";
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline/index.js'
-import { SvgIcon } from "../utils/SvgIcon";
+import React, { useState } from 'react';
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline/index.js';
+import { SvgIcon } from '../utils/SvgIcon';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function ContactForm({contactInfo, socialLinks}) {
-  const [disableSubmitButton, setDisableSubmitButton] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formDetails, setFormDetails] = useState({
-    firstName: undefined,
-    lastName: undefined,
-    email: undefined,
-    phone: undefined,
-    subject: undefined,
-    message: undefined,
-  });
-  
-  const toastifySuccess = () => {
-    toast.success("Success! We've received your message and will be in touch shortly.", {
-      position: "bottom-center",
-      autoClose: 10000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-  
-  const toastifyError = () => {
-    toast.error('Oops! Something went wrong. Please refresh the page and try again.', {
-      position: "top-right",
-      autoClose: 10000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-  
-  const toastifyWarning = (errorString) => {
-    toast.warn(errorString, {
-      position: "bottom-center",
-      autoClose: 10000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    });
-  }
+export default function ContactForm({ contactInfo, socialLinks }) {
+	const [disableSubmitButton, setDisableSubmitButton] = useState(false);
+	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [formDetails, setFormDetails] = useState({
+		firstName: undefined,
+		lastName: undefined,
+		email: undefined,
+		phone: undefined,
+		subject: undefined,
+		message: undefined,
+		address: undefined,
+	});
 
-  const toastifyInfo = () => {
-    toast.info("We have already received your enquiry. Please check your emails for a confirmation. If you wish to make changes or provide more information, you can reply to the email we sent you.", {
-      position: "bottom-center",
-      autoClose: 10000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    })
-  }
-  
-  
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setFormSubmitted(true);
-    if (disableSubmitButton) {
-      return toastifyInfo();
-    }
+	const toastifySuccess = () => {
+		toast.success("Success! We've received your message and will be in touch shortly.", {
+			position: 'bottom-center',
+			autoClose: 10000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
 
-    const data = {
-      firstName: formDetails.firstName, 
-      lastName: formDetails.lastName, 
-      email: formDetails.email, 
-      phone: formDetails.phone, 
-      subject: formDetails.subject, 
-      message: formDetails.message
-    };
-    
-    const formErrors = [];
-  
-    if (!data.firstName) {
-      formErrors.push('First name');
-    }
-  
-    if (!data.email) {
-      formErrors.push('Email');
-    }
-  
-    if (!data.subject) {
-      formErrors.push('Subject');
-    }
-  
-    if (!data.message) {
-      formErrors.push('Message');
-    }
-  
-    if (formErrors.length > 0) {
-      let formErrorInfoString = `Hmmm, looks like you forgot to fill out the following field${formErrors.length === 1 ? '' : 's'}: ${formErrors.join(', ')}.`;
-      toastifyWarning(formErrorInfoString);
-      return;
-    }
-  
-    fetch("./.netlify/functions/new-enquiry", {
-      method: "POST",
-      body: JSON.stringify(data),
-    }).then((response) => {
-      if (response.status === 200) {
-        toastifySuccess();
-        setDisableSubmitButton(true);
-      }
-    }).catch((error) => {
-      console.log(error);
-      toastifyError();
-    });
-  };
+	const toastifyError = () => {
+		toast.error('Oops! Something went wrong. Please refresh the page and try again.', {
+			position: 'top-right',
+			autoClose: 10000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
 
-  return (
+	const toastifyWarning = (errorString) => {
+		toast.warn(errorString, {
+			position: 'bottom-center',
+			autoClose: 10000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			theme: 'colored',
+		});
+	};
+
+	const toastifyInfo = () => {
+		toast.info(
+			'We have already received your enquiry. Please check your emails for a confirmation. If you wish to make changes or provide more information, you can reply to the email we sent you.',
+			{
+				position: 'bottom-center',
+				autoClose: 10000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				theme: 'colored',
+			}
+		);
+	};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		setFormSubmitted(true);
+		if (disableSubmitButton) {
+			return toastifyInfo();
+		}
+
+		const data = {
+			firstName: formDetails.firstName,
+			lastName: formDetails.lastName,
+			email: formDetails.email,
+			phone: formDetails.phone,
+			subject: formDetails.subject,
+			message: formDetails.message,
+			address: formDetails.address,
+		};
+
+		const formErrors = [];
+
+		if (!data.firstName) {
+			formErrors.push('First name');
+		}
+
+		if (!data.lastName) {
+			formErrors.push('Last name');
+		}
+
+		if (!data.email) {
+			formErrors.push('Email');
+		}
+
+		if (!data.subject) {
+			formErrors.push('Subject');
+		}
+
+		if (!data.message) {
+			formErrors.push('Message');
+		}
+
+		if (!data.phone) {
+			formErrors.push('Phone Number');
+		}
+
+		if (!data.address) {
+			formErrors.push('Address');
+		}
+
+		if (formErrors.length > 0) {
+			let formErrorInfoString = `Hmmm, looks like you forgot to fill out the following field${
+				formErrors.length === 1 ? '' : 's'
+			}: ${formErrors.join(', ')}.`;
+			toastifyWarning(formErrorInfoString);
+			return;
+		}
+
+		fetch('./.netlify/functions/new-enquiry', {
+			method: 'POST',
+			body: JSON.stringify(data),
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					toastifySuccess();
+					setDisableSubmitButton(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				toastifyError();
+			});
+	};
+
+	return (
 		<main className="bg-warm-gray-50 overflow-hidden">
 			{/* Contact section */}
 			<section
@@ -245,7 +265,11 @@ export default function ContactForm({contactInfo, socialLinks}) {
 								{contactInfo.fields.operatingHours &&
 									contactInfo.fields.operatingHours.content &&
 									contactInfo.fields.operatingHours.content.map((item, index) => (
-										<p key={index} className="mt-2 max-w-3xl text-base text-orange-50">{item.content[0].value}</p>
+										<p
+											key={index}
+											className="mt-2 max-w-3xl text-base text-orange-50">
+											{item.content[0].value}
+										</p>
 									))}
 								<dl className="mt-8 space-y-6">
 									<dt>
@@ -302,62 +326,57 @@ export default function ContactForm({contactInfo, socialLinks}) {
 										<label
 											htmlFor="firstName"
 											className="block text-sm font-medium text-warm-gray-900">
-											First name
+											First name *
 										</label>
 										<div className="mt-1">
 											<input
+												required
 												type="text"
 												name="firstName"
 												id="firstName"
 												autoComplete="given-name"
-                        className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
-                          formSubmitted && !formDetails.firstName ? "border-red-500" : "border-warm-gray-300"
-                        }`}
-                        value={formDetails.firstName}
-                        onChange={(event) => 
-                          setFormDetails({
-                            ...formDetails,
-                            firstName: event.target.value,
-                          })
-                        }
-                      />
+												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
+													formSubmitted && !formDetails.firstName ? 'border-red-500' : 'border-warm-gray-300'
+												}`}
+												value={formDetails.firstName}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														firstName: event.target.value,
+													})
+												}
+											/>
 										</div>
 									</div>
 									<div>
-										<div className="flex justify-between">
-											<label
-												htmlFor="lastName"
-												className="block text-sm font-medium text-warm-gray-900">
-												Last name
-											</label>
-											<span
-												id="phone-optional"
-												className="text-sm text-warm-gray-500">
-												Optional
-											</span>
-										</div>
+										<label
+											htmlFor="lastName"
+											className="block text-sm font-medium text-warm-gray-900">
+											Last name *
+										</label>
 										<div className="mt-1">
 											<input
+												required
 												type="text"
 												name="lastName"
 												id="lastName"
 												autoComplete="family-name"
 												className="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand"
-                        value={formDetails.lastName}
-                        onChange={(event) =>
-                          setFormDetails({
-                            ...formDetails,
-                            lastName: event.target.value,
-                          })
-                        }
-                      />
+												value={formDetails.lastName}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														lastName: event.target.value,
+													})
+												}
+											/>
 										</div>
 									</div>
 									<div>
 										<label
 											htmlFor="email"
 											className="block text-sm font-medium text-warm-gray-900">
-											Email
+											Email *
 										</label>
 										<div className="mt-1">
 											<input
@@ -365,32 +384,26 @@ export default function ContactForm({contactInfo, socialLinks}) {
 												name="email"
 												type="email"
 												autoComplete="email"
+												required
 												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
-                          formSubmitted && !formDetails.email ? "border-red-500" : "border-warm-gray-300"
-                        }`}
-                        value={formDetails.email}
-                        onChange={(event) =>
-                          setFormDetails({
-                            ...formDetails,
-                            email: event.target.value,
-                          })
-                        }
+													formSubmitted && !formDetails.email ? 'border-red-500' : 'border-warm-gray-300'
+												}`}
+												value={formDetails.email}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														email: event.target.value,
+													})
+												}
 											/>
 										</div>
 									</div>
 									<div>
-										<div className="flex justify-between">
-											<label
-												htmlFor="phone"
-												className="block text-sm font-medium text-warm-gray-900">
-												Phone
-											</label>
-											<span
-												id="phone-optional"
-												className="text-sm text-warm-gray-500">
-												Optional
-											</span>
-										</div>
+										<label
+											htmlFor="phone"
+											className="block text-sm font-medium text-warm-gray-900">
+											Phone *
+										</label>
 										<div className="mt-1">
 											<input
 												type="text"
@@ -399,13 +412,37 @@ export default function ContactForm({contactInfo, socialLinks}) {
 												autoComplete="tel"
 												className="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand"
 												aria-describedby="phone-optional"
-                        value={formDetails.phone}
-                        onChange={(event) =>
-                          setFormDetails({
-                            ...formDetails,
-                            phone: event.target.value,
-                          })
-                        }
+												value={formDetails.phone}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														phone: event.target.value,
+													})
+												}
+											/>
+										</div>
+									</div>
+									<div className="sm:col-span-2">
+										<label
+											htmlFor="address"
+											className="block text-sm font-medium text-warm-gray-900">
+											Address *
+										</label>
+										<div className="mt-1">
+											<input
+												type="text"
+												name="address"
+												id="address"
+												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
+													formSubmitted && !formDetails.address ? 'border-red-500' : 'border-warm-gray-300'
+												}`}
+												value={formDetails.address}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														address: event.target.value,
+													})
+												}
 											/>
 										</div>
 									</div>
@@ -413,7 +450,7 @@ export default function ContactForm({contactInfo, socialLinks}) {
 										<label
 											htmlFor="subject"
 											className="block text-sm font-medium text-warm-gray-900">
-											Subject
+											Subject *
 										</label>
 										<div className="mt-1">
 											<input
@@ -421,15 +458,15 @@ export default function ContactForm({contactInfo, socialLinks}) {
 												name="subject"
 												id="subject"
 												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
-                          formSubmitted && !formDetails.subject ? "border-red-500" : "border-warm-gray-300"
-                        }`}
-                        value={formDetails.subject}
-                        onChange={(event) =>
-                          setFormDetails({
-                            ...formDetails,
-                            subject: event.target.value,
-                          })
-                        }
+													formSubmitted && !formDetails.subject ? 'border-red-500' : 'border-warm-gray-300'
+												}`}
+												value={formDetails.subject}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														subject: event.target.value,
+													})
+												}
 											/>
 										</div>
 									</div>
@@ -452,15 +489,15 @@ export default function ContactForm({contactInfo, socialLinks}) {
 												name="message"
 												rows={4}
 												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
-                          formSubmitted && !formDetails.message ? "border-red-500" : "border-warm-gray-300"
-                        }`}
-                        value={formDetails.message}
-                        onChange={(event) =>
-                          setFormDetails({
-                            ...formDetails,
-                            message: event.target.value,
-                          })
-                        }
+													formSubmitted && !formDetails.message ? 'border-red-500' : 'border-warm-gray-300'
+												}`}
+												value={formDetails.message}
+												onChange={(event) =>
+													setFormDetails({
+														...formDetails,
+														message: event.target.value,
+													})
+												}
 												aria-describedby="message-max"
 											/>
 										</div>
@@ -470,8 +507,12 @@ export default function ContactForm({contactInfo, socialLinks}) {
 											id="submit-button"
 											type="submit"
 											className={`mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm sm:w-auto 
-                        ${disableSubmitButton ? 'text-warm-gray-300 bg-warm-gray-600' : 'text-white bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 '}`}>
-                      Submit
+                        ${
+													disableSubmitButton
+														? 'text-warm-gray-300 bg-warm-gray-600'
+														: 'text-white bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 '
+												}`}>
+											Submit
 										</button>
 										<ToastContainer
 											position="bottom-center"
