@@ -409,6 +409,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 												type="text"
 												name="phone"
 												id="phone"
+												required
 												autoComplete="tel"
 												className="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand"
 												aria-describedby="phone-optional"
@@ -433,6 +434,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 												type="text"
 												name="address"
 												id="address"
+												required
 												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
 													formSubmitted && !formDetails.address ? 'border-red-500' : 'border-warm-gray-300'
 												}`}
@@ -457,6 +459,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 												type="text"
 												name="subject"
 												id="subject"
+												required
 												className={`block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-brand focus:ring-brand ${
 													formSubmitted && !formDetails.subject ? 'border-red-500' : 'border-warm-gray-300'
 												}`}
