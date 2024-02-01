@@ -8,8 +8,6 @@ const handler = async function(event) {
 
   const requestBody = JSON.parse(event.body);
 
-  
-
   await fetch(`${process.env.URL}/.netlify/functions/emails/enquiry`, {
     headers: {
       "netlify-emails-secret": process.env.NETLIFY_EMAILS_SECRET,

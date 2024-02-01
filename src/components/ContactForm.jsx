@@ -32,7 +32,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 
 	const toastifyError = () => {
 		toast.error('Oops! Something went wrong. Please refresh the page and try again.', {
-			position: 'top-right',
+			position: 'bottom-center',
 			autoClose: 10000,
 			hideProgressBar: false,
 			closeOnClick: true,
@@ -125,7 +125,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 			return;
 		}
 
-		fetch('./.netlify/functions/new-enquiry', {
+		fetch('https://purifiedgroup.com.au/.netlify/functions/new-enquiry', {
 			method: 'POST',
 			body: JSON.stringify(data),
 		})
