@@ -70,6 +70,10 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 		);
 	};
 
+	const navigate = () => {
+		window.location.href = '/Thankyou';
+	}
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setFormSubmitted(true);
@@ -133,6 +137,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 				if (response.status === 200) {
 					toastifySuccess();
 					setDisableSubmitButton(true);
+					navigate();
 				}
 			})
 			.catch((error) => {
