@@ -71,7 +71,10 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 	};
 
 	const navigate = () => {
-		window.location.href = '/Thankyou';
+		setTimeout(() => {
+			window.location.href = '/Thankyou';
+		}
+		, 5000);
 	}
 
 	const handleSubmit = async (event) => {
