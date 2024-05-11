@@ -17,19 +17,6 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 		address: undefined,
 	});
 
-	const toastifySuccess = () => {
-		toast.success("Success! We've received your message and will be in touch shortly.", {
-			position: 'bottom-center',
-			autoClose: 10000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'colored',
-		});
-	};
-
 	const toastifyError = () => {
 		toast.error('Oops! Something went wrong. Please refresh the page and try again.', {
 			position: 'bottom-center',
@@ -71,10 +58,7 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 	};
 
 	const navigate = () => {
-		setTimeout(() => {
-			window.location.href = '/Thankyou';
-		}
-		, 5000);
+		window.location.href = '/Thankyou';
 	}
 
 	const handleSubmit = async (event) => {
@@ -138,7 +122,6 @@ export default function ContactForm({ contactInfo, socialLinks }) {
 		})
 			.then((response) => {
 				if (response.status === 200) {
-					toastifySuccess();
 					setDisableSubmitButton(true);
 					navigate();
 				}
