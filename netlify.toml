@@ -44,4 +44,10 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/thankyou"
+  to = "/Thankyou"
+  status = 200
+  force = true
+
 
